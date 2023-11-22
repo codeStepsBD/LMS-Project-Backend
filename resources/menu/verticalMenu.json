@@ -30,35 +30,19 @@
 
 
     {
-      "name": "Layouts",
+      "name": "Course Video",
       "icon": "menu-icon tf-icons bx bx-layout",
-      "slug": "layouts",
+      "slug": "course video",
       "submenu": [
         {
-          "url": "/layouts/without-menu",
-          "name": "Without menu",
-          "slug": "layouts-without-menu"
+          "url": "/pages/courses-video-list",
+          "name": "Course Video",
+          "slug": "courses-video-list"
         },
         {
-          "url": "/layouts/without-navbar",
-          "name": "Without navbar",
-          "slug": "layouts-without-navbar"
-        },
-        {
-          "url": "/layouts/container",
-          "name": "Container",
-          "slug": "layouts-container"
-        },
-        {
-          "url": "/layouts/fluid",
-          "name": "Fluid",
-          "slug": "layouts-fluid"
-        },
-        {
-          "url": "/layouts/blank",
-          "name": "Blank",
-          "slug": "layouts-blank",
-          "target": "_blank"
+          "url": "/pages/create-course-video",
+          "name": "Create course video",
+          "slug": "create-course-video"
         }
       ]
     },

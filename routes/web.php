@@ -25,10 +25,16 @@ Route::get('/layouts/fluid', $controller_path . '\layouts\Fluid@index')->name('l
 Route::get('/layouts/container', $controller_path . '\layouts\Container@index')->name('layouts-container');
 Route::get('/layouts/blank', $controller_path . '\layouts\Blank@index')->name('layouts-blank');
 
-// pages
+// Course Page
 Route::get('/pages/courses', $controller_path . '\course\Courses@index')->name('pages-course-list');
 Route::get('/pages/create-course', $controller_path . '\course\Courses@create')->name('pages-create-course');
 Route::post('/pages/course-store', $controller_path . '\course\Courses@store')->name('course-store');
+
+// Course Video Page
+Route::get('/pages/courses-video-list', $controller_path . '\course_video\CourseVideoController@index')->name('pages-course-video-list');
+Route::get('/pages/create-course-video', $controller_path . '\course_video\CourseVideoController@create')->name('pages-create-course-video');
+Route::post('/pages/course-video-store', $controller_path . '\course_video\CourseVideoController@store')->name('course-video-store');
+
 Route::get('/pages/account-settings-connections', $controller_path . '\pages\AccountSettingsConnections@index')->name('pages-account-settings-connections');
 Route::get('/pages/misc-error', $controller_path . '\pages\MiscError@index')->name('pages-misc-error');
 Route::get('/pages/misc-under-maintenance', $controller_path . '\pages\MiscUnderMaintenance@index')->name('pages-misc-under-maintenance');
