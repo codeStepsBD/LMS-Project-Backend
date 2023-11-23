@@ -8,7 +8,7 @@
 
 @section('content')
 <h4 class="fw-bold py-3 mb-4">
-  <span class="text-muted fw-light">Course List</span>
+  <span class="text-muted fw-light">Course Video List</span>
 </h4>
 
 <!-- Basic Bootstrap Table -->
@@ -18,10 +18,9 @@
       <thead>
         <tr>
           <th>Course Title</th>
-          <th>Author</th>
-          <th>Category</th>
-          <th>Total Lessions</th>
-          <th>Course Duration</th>
+          <th>Video Title</th>
+          <th>Video Epsode Number</th>
+          <th>Video duration</th>
           <th>Status</th>
           <th>Actions</th>
         </tr>
@@ -30,11 +29,10 @@
         @if(isset($data))
         @foreach($data as $value)
         <tr>
+          <td>{{ $value->id }}</td>
           <td>{{ $value->title }}</td>
-          <td>{{ $value->author_id }}</td>
-          <td>{{ $value->category }}</td>
-          <td>{{ $value->total_lesson }}</td>
-          <td>{{ $value->duration }}</td>
+          <td>{{ $value->video_epsode_number }}</td>
+          <td>{{ $value->video_duration }}</td>
           <td>
             @if($value->status == 1)
               <span class="badge bg-label-primary me-1">Active</span>
@@ -44,11 +42,7 @@
           </td>
           <td>
             <div class="dropdown">
-              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-              </div>
+              <box-icon name='edit'></box-icon>
             </div>
           </td>
         </tr>

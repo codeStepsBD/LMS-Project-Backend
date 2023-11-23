@@ -5,13 +5,14 @@ namespace App\Http\Controllers\course_video;
 use App\Models\course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\CourseVideo;
 
 class CourseVideoController extends Controller
 {
     public function index()
     {
-        $data = Course::get();
-        return view('content.course-video.course-list',compact('data'));
+        $data = CourseVideo::get();
+        return view('content.course-video.course-video-list',compact('data'));
     }
 
 
@@ -20,18 +21,20 @@ class CourseVideoController extends Controller
     }
 
     public function store(Request $request){
+
         $validated = $request->validate([
-            'author_id' => 'nullable',
+            'course_id' => 'required',
             'title' => 'required',
-            'description' => 'required',
-            'category' => 'required',
-            'total_lesson' => 'required|numeric',
-            'duration' => 'required|numeric',
+            'video_thumbnail' => 'nullable',
+            'video_url' => 'required',
+            'video_epsode_number' => 'required|numeric',
+            'video_duration' => 'required|numeric',
+            'public_private_status' => 'required',
         ]);
 
-        course::create($validated);
-        return redirect()->route('pages-course-list')
-            ->with('success', 'Post created successfully.');
+        CourseVideo::create($validated);
+        return redirect()->route('course-video-list')
+            ->with('success', 'Course video created successfully.');
     }
 
 }

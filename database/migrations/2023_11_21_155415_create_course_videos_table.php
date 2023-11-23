@@ -18,12 +18,14 @@ return new class extends Migration
             $table->unsignedBigInteger('course_id');
             $table->foreign('course_id')->references('id')->on('courses');
             $table->string('title');
-            $table->string('video_thumbnail');
-            $table->string('video_url');
-            $table->string('video_epsode_number');
-            $table->string('video_duration');
+            $table->string('video_thumbnail')->nullable();
+            $table->string('video_url')->nullable();
+            $table->string('video_epsode_number')->nullable();
+            $table->string('video_duration')->nullable();
+            $table->text('description')->nullable();
             $table->tinyInteger('public_private_status');
             $table->tinyInteger('status')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
