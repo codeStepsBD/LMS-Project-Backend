@@ -8,22 +8,22 @@
 
 @section('content')
 <h4 class="fw-bold py-3 mb-4">
-  <span class="text-muted fw-light">Create New Course</span>
+  <span class="text-muted fw-light">View Single Course Video Content</span>
+  <a href="{{ route('course-video-list') }}" style="float: right;">Back</a>
 </h4>
 <!-- Basic Bootstrap Table -->
 <div class="col-xxl">
     <div class="card mb-4">
       <div class="card-body">
-        <form method="POST" action="{{ route('course-video-store') }}">
-          @csrf()
+        <form>
           <div class="row mb-3">
             <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Course</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
-                <select name="course_id" class="form-control" id="course_id">
+                <select name="course_id" class="form-control" id="course_id" readonly>
                   <option value="">Select Course</option>
                   @foreach($courses as $value)
-                  <option value="{{$value->id}}">{{$value->title}}</option>
+                      <option {{ ($course_video->id == $value->id) ? "selected" : "" }} value="{{$value->id}}">{{$value->title}}</option>
                   @endforeach
                 </select>
               </div>
@@ -38,12 +38,7 @@
             <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Video Title</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
-                <input type="text" class="form-control" id="title" name="title" placeholder="Course Title" aria-label="Course Title">
-              </div>
-              <div class="form-text error">
-                @error('title')
-                  {{ $errors->first('title') }}
-                @enderror
+                <input type="text" readonly class="form-control" id="title" name="title" placeholder="Course Title" value="{{ $course_video->title }}">
               </div>
             </div>
           </div>
@@ -51,12 +46,7 @@
             <label class="col-sm-2 form-label" for="basic-icon-default-phone">Video URL</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
-                <input type="url" id="video_url" name="video_url" class="form-control" placeholder="Video URL">
-              </div>
-              <div class="form-text error">
-                @error('video_url')
-                  {{ $errors->first('video_url') }}
-                @enderror
+                <input readonly type="url" id="video_url" name="video_url" class="form-control" value="{{ $course_video->video_url }}">
               </div>
             </div>
           </div>
@@ -64,12 +54,7 @@
             <label class="col-sm-2 form-label" for="basic-icon-default-message">Video Epsode Number</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
-                <input type="number" id="video_epsode_number" name="video_epsode_number" class="form-control" placeholder="Video epsode number">
-              </div>
-              <div class="form-text error">
-                @error('video_epsode_number')
-                  {{ $errors->first('video_epsode_number') }}
-                @enderror
+                <input readonly type="number" id="video_epsode_number" name="video_epsode_number" class="form-control" placeholder="Video epsode number" value="{{ $course_video->video_epsode_number }}">
               </div>
             </div>
           </div>
@@ -78,12 +63,15 @@
             <label class="col-sm-2 form-label" for="basic-icon-default-message">Video Duration</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
-                <input type="number" id="video_duration" name="video_duration" class="form-control" placeholder="Video duration">
+                <input readonly type="number" id="video_duration" name="video_duration" class="form-control" placeholder="Video duration" value="{{ $course_video->video_duration }}">
               </div>
-              <div class="form-text error">
-                @error('video_duration')
-                  {{ $errors->first('video_duration') }}
-                @enderror
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Video Description</label>
+            <div class="col-sm-10">
+              <div class="input-group input-group-merge">
+                <textarea readonly id="description" name="description" class="form-control" placeholder="Description">{{ $course_video->description }}</textarea>
               </div>
             </div>
           </div>
@@ -91,36 +79,12 @@
             <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Video Status</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
-                <textarea id="description" name="description" class="form-control" placeholder="Description"></textarea>
-              </div>
-              <div class="form-text error">
-                @error('description')
-                  {{ $errors->first('description') }}
-                @enderror
-              </div>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Video Status</label>
-            <div class="col-sm-10">
-              <div class="input-group input-group-merge">
-                <select name="public_private_status" class="form-control" id="public_private_status">
+                <select readonly name="public_private_status" class="form-control" id="public_private_status">
                   <option value="">Select status</option>
-                  <option value="1">Public</option>
-                  <option value="2">Private</option>
+                  <option {{ ($course_video->public_private_status == 1) ? "selected" : "" }} value="1">Public</option>
+                  <option {{ ($course_video->public_private_status == 2) ? "selected" : "" }} value="2">Private</option>
                 </select>
               </div>
-                <div class="form-text error">
-                  @error('public_private_status')
-                    {{ $errors->first('public_private_status') }}
-                  @enderror
-                </div>
-            </div>
-          </div>
-
-          <div class="row justify-content-end">
-            <div class="col-sm-10">
-              <button type="submit" class="btn btn-primary">Send</button>
             </div>
           </div>
         </form>
