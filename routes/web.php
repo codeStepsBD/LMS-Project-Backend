@@ -31,9 +31,13 @@ Route::get('/pages/create-course', $controller_path . '\course\Courses@create')-
 Route::post('/pages/course-store', $controller_path . '\course\Courses@store')->name('course-store');
 
 // Course Video Page
-Route::get('/pages/courses-video-list', $controller_path . '\course_video\CourseVideoController@index')->name('pages-course-video-list');
+Route::get('/pages/courses-video-list', $controller_path . '\course_video\CourseVideoController@index')->name('course-video-list');
 Route::get('/pages/create-course-video', $controller_path . '\course_video\CourseVideoController@create')->name('pages-create-course-video');
 Route::post('/pages/course-video-store', $controller_path . '\course_video\CourseVideoController@store')->name('course-video-store');
+Route::get('create-course-show/{id}', $controller_path . '\course_video\CourseVideoController@show')->name('show-course-video');
+Route::get('course-video-edit/{id}', $controller_path . '\course_video\CourseVideoController@edit')->name('course-video-edit');
+Route::post('course-video-update/{id}', $controller_path . '\course_video\CourseVideoController@update')->name('course-video-update');
+Route::get('course-video-delete/{id}', $controller_path . '\course_video\CourseVideoController@destroy')->name('course-video-delete');
 
 Route::get('/pages/account-settings-connections', $controller_path . '\pages\AccountSettingsConnections@index')->name('pages-account-settings-connections');
 Route::get('/pages/misc-error', $controller_path . '\pages\MiscError@index')->name('pages-misc-error');

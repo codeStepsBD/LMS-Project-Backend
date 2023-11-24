@@ -13,6 +13,9 @@
 
 <!-- Basic Bootstrap Table -->
 <div class="card">
+  @if(Session::has('success'))
+  <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('success') }}</p>
+  @endif
   <div class="table-responsive text-nowrap">
     <table class="table">
       <thead>
@@ -42,14 +45,16 @@
           </td>
           <td>
             <div class="dropdown">
-              <box-icon name='edit'></box-icon>
+              <a href="{{ route('course-video-edit',$value->id) }}"><i class="bx bxs-edit"></i></a>
+              <a href="{{ route('show-course-video',$value->id) }}"><i class="bx bxs-low-vision"></i></a>
+              <a onclick="return confirm('Are you sure want to delete');" href="{{ route('course-video-delete',$value->id) }}"><i class="bx bxs-message-square-x"></i></a>
             </div>
           </td>
         </tr>
         @endforeach
         @else
         <tr>
-          <td colspan="5">Data is not available</td>
+          <td colspan="5" class="text-center">Data is not available</td>
         </tr>
         @endif
       </tbody>

@@ -14,7 +14,7 @@
 <div class="col-xxl">
     <div class="card mb-4">
       <div class="card-body">
-        <form method="POST" action="{{ route('course-video-store') }}">
+        <form method="POST" action="{{ route('course-video-update',$course_video->id) }}">
           @csrf()
           <div class="row mb-3">
             <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Course</label>
@@ -23,7 +23,7 @@
                 <select name="course_id" class="form-control" id="course_id">
                   <option value="">Select Course</option>
                   @foreach($courses as $value)
-                  <option value="{{$value->id}}">{{$value->title}}</option>
+                      <option {{ ($course_video->id == $value->id) ? "selected" : "" }} value="{{$value->id}}">{{$value->title}}</option>
                   @endforeach
                 </select>
               </div>
@@ -38,7 +38,7 @@
             <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Video Title</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
-                <input type="text" class="form-control" id="title" name="title" placeholder="Course Title" aria-label="Course Title">
+                <input type="text" class="form-control" id="title" name="title" placeholder="Course Title" value="{{ $course_video->title }}">
               </div>
               <div class="form-text error">
                 @error('title')
@@ -51,7 +51,7 @@
             <label class="col-sm-2 form-label" for="basic-icon-default-phone">Video URL</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
-                <input type="url" id="video_url" name="video_url" class="form-control" placeholder="Video URL">
+                <input type="url" id="video_url" name="video_url" class="form-control" value="{{ $course_video->video_url }}">
               </div>
               <div class="form-text error">
                 @error('video_url')
@@ -64,7 +64,7 @@
             <label class="col-sm-2 form-label" for="basic-icon-default-message">Video Epsode Number</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
-                <input type="number" id="video_epsode_number" name="video_epsode_number" class="form-control" placeholder="Video epsode number">
+                <input type="number" id="video_epsode_number" name="video_epsode_number" class="form-control" placeholder="Video epsode number" value="{{ $course_video->video_epsode_number }}">
               </div>
               <div class="form-text error">
                 @error('video_epsode_number')
@@ -78,7 +78,7 @@
             <label class="col-sm-2 form-label" for="basic-icon-default-message">Video Duration</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
-                <input type="number" id="video_duration" name="video_duration" class="form-control" placeholder="Video duration">
+                <input type="number" id="video_duration" name="video_duration" class="form-control" placeholder="Video duration" value="{{ $course_video->video_duration }}">
               </div>
               <div class="form-text error">
                 @error('video_duration')
@@ -88,10 +88,10 @@
             </div>
           </div>
           <div class="row mb-3">
-            <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Video Status</label>
+            <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Video Description</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
-                <textarea id="description" name="description" class="form-control" placeholder="Description"></textarea>
+                <textarea id="description" name="description" class="form-control" placeholder="Description">{{ $course_video->description }}</textarea>
               </div>
               <div class="form-text error">
                 @error('description')
@@ -106,8 +106,8 @@
               <div class="input-group input-group-merge">
                 <select name="public_private_status" class="form-control" id="public_private_status">
                   <option value="">Select status</option>
-                  <option value="1">Public</option>
-                  <option value="2">Private</option>
+                  <option {{ ($course_video->public_private_status == 1) ? "selected" : "" }} value="1">Public</option>
+                  <option {{ ($course_video->public_private_status == 2) ? "selected" : "" }} value="2">Private</option>
                 </select>
               </div>
                 <div class="form-text error">
