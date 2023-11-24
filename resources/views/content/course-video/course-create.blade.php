@@ -14,7 +14,7 @@
 <div class="col-xxl">
     <div class="card mb-4">
       <div class="card-body">
-        <form method="POST" action="{{ route('course-video-store') }}">
+        <form method="POST" action="{{ route('course-video-store') }}" enctype="multipart/form-data">
           @csrf()
           <div class="row mb-3">
             <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Course</label>
@@ -73,7 +73,6 @@
               </div>
             </div>
           </div>
-
           <div class="row mb-3">
             <label class="col-sm-2 form-label" for="basic-icon-default-message">Video Duration</label>
             <div class="col-sm-10">
@@ -117,7 +116,19 @@
                 </div>
             </div>
           </div>
-
+          <div class="row mb-3">
+            <label class="col-sm-2 form-label" for="basic-icon-default-message">Video Thumbnail</label>
+            <div class="col-sm-10">
+              <div class="input-group input-group-merge">
+                <input type="file" id="video_thumbnail" name="video_thumbnail" class="form-control">
+              </div>
+              <div class="form-text error">
+                @error('video_thumbnail')
+                  {{ $errors->first('video_thumbnail') }}
+                @enderror
+              </div>
+            </div>
+          </div>
           <div class="row justify-content-end">
             <div class="col-sm-10">
               <button type="submit" class="btn btn-primary">Send</button>
