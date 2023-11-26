@@ -21,7 +21,7 @@ class CourseVideoController extends Controller
 
     public function create(){
         $courses = CourseVideo::get();
-        return view('content.course-video.course-create',compact('courses'));
+        return view('content.course-video.course-video-create',compact('courses'));
     }
 
     public function store(Request $request, fileUploades $fileUploades){
