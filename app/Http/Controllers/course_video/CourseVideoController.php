@@ -78,7 +78,7 @@ class CourseVideoController extends Controller
         $course_video = CourseVideo::findOrFail($id);
         if($course_video->delete()){
             return redirect()->route('course-video-list')
-            ->with('success', 'Course video delete successfully');
+            ->with('success', 'Course video delete successfully.');
         }
     }
 
