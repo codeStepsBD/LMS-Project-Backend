@@ -56,6 +56,7 @@ class CourseVideoController extends Controller
     }
 
     public function update(Request $request, $id){
+
         $validated = $request->validate([
             'course_id' => 'required',
             'title' => 'required',
@@ -70,6 +71,8 @@ class CourseVideoController extends Controller
         return redirect()->route('course-video-list')
             ->with('success', 'Course video update successfully.');
     }
+
+
 
     public function destroy($id){
         $course_video = CourseVideo::findOrFail($id);
