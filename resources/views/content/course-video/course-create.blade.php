@@ -14,7 +14,7 @@
 <div class="col-xxl">
     <div class="card mb-4">
       <div class="card-body">
-        <form method="POST" action="{{ route('course-video-store') }}">
+        <form method="POST" action="{{ route('course-video-store') }}" enctype="multipart/form-data">
           @csrf()
           <div class="row mb-3">
             <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Course</label>
@@ -36,15 +36,24 @@
           </div>
           <div class="row mb-3">
             <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Video Title</label>
+        <form method="POST" action="{{ route('course-video-store') }}">
+          @csrf()
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Course</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
-                <input type="text" class="form-control" id="title" name="title" placeholder="Course Title" aria-label="Course Title">
+                <select name="course_id" class="form-control" id="course_id">
+                  <option value="">Select Course</option>
+                  @foreach($courses as $value)
+                  <option value="{{$value->id}}">{{$value->title}}</option>
+                  @endforeach
+                </select>
               </div>
-              <div class="form-text error">
-                @error('title')
-                  {{ $errors->first('title') }}
-                @enderror
-              </div>
+                <div class="form-text error">
+                  @error('course_id')
+                    {{ $errors->first('course_id') }}
+                  @enderror
+                </div>
             </div>
           </div>
           <div class="row mb-3">
@@ -56,6 +65,15 @@
               <div class="form-text error">
                 @error('video_url')
                   {{ $errors->first('video_url') }}
+
+            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Video Title</label>
+            <div class="col-sm-10">
+              <div class="input-group input-group-merge">
+                <input type="text" class="form-control" id="title" name="title" placeholder="Course Title" aria-label="Course Title">
+              </div>
+              <div class="form-text error">
+                @error('title')
+                  {{ $errors->first('title') }}
                 @enderror
               </div>
             </div>
@@ -69,12 +87,34 @@
               <div class="form-text error">
                 @error('video_epsode_number')
                   {{ $errors->first('video_epsode_number') }}
+            <label class="col-sm-2 form-label" for="basic-icon-default-phone">Video URL</label>
+            <div class="col-sm-10">
+              <div class="input-group input-group-merge">
+                <input type="url" id="video_url" name="video_url" class="form-control" placeholder="Video URL">
+              </div>
+              <div class="form-text error">
+                @error('video_url')
+                  {{ $errors->first('video_url') }}
+                @enderror
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 form-label" for="basic-icon-default-message">Video Duration</label>
+            <div class="col-sm-10">
+              <div class="input-group input-group-merge">
+                <input type="number" id="video_duration" name="video_duration" class="form-control" placeholder="Video duration">
+              </div>
+              <div class="form-text error">
+                @error('video_duration')
+                  {{ $errors->first('video_duration') }}
                 @enderror
               </div>
             </div>
           </div>
 
           <div class="row mb-3">
+
             <label class="col-sm-2 form-label" for="basic-icon-default-message">Video Duration</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
@@ -91,11 +131,28 @@
             <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Video Status</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
-                <textarea id="description" name="description" class="form-control" placeholder="Description"></textarea>
+                <select name="public_private_status" class="form-control" id="public_private_status">
+                  <option value="">Select status</option>
+                  <option value="1">Public</option>
+                  <option value="2">Private</option>
+                </select>
+              </div>
+                <div class="form-text error">
+                  @error('public_private_status')
+                    {{ $errors->first('public_private_status') }}
+                  @enderror
+                </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 form-label" for="basic-icon-default-message">Video Thumbnail</label>
+            <div class="col-sm-10">
+              <div class="input-group input-group-merge">
+                <input type="file" id="video_thumbnail" name="video_thumbnail" class="form-control">
               </div>
               <div class="form-text error">
-                @error('description')
-                  {{ $errors->first('description') }}
+                @error('video_thumbnail')
+                  {{ $errors->first('video_thumbnail') }}
                 @enderror
               </div>
             </div>

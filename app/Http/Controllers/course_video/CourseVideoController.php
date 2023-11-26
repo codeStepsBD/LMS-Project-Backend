@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\course\Courses;
 use App\Models\CourseVideo;
+use App\Services;
+use App\Services\fileUploades;
 
 class CourseVideoController extends Controller
 {
@@ -22,7 +24,7 @@ class CourseVideoController extends Controller
         return view('content.course-video.course-create',compact('courses'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request, fileUploades $fileUploades){
 
         $validated = $request->validate([
             'course_id' => 'required',
@@ -34,7 +36,8 @@ class CourseVideoController extends Controller
             'description' => 'required',
             'public_private_status' => 'required',
         ]);
-
+        $file = $fileUploades::fileUpload($request, 'video_thumbnail');
+        $validated['video_thumbnail'] = $file;
         CourseVideo::create($validated);
         return redirect()->route('course-video-list')
             ->with('success', 'Course video created successfully.');
@@ -53,6 +56,7 @@ class CourseVideoController extends Controller
     }
 
     public function update(Request $request, $id){
+
         $validated = $request->validate([
             'course_id' => 'required',
             'title' => 'required',
@@ -67,6 +71,8 @@ class CourseVideoController extends Controller
         return redirect()->route('course-video-list')
             ->with('success', 'Course video update successfully.');
     }
+
+
 
     public function destroy($id){
         $course_video = CourseVideo::findOrFail($id);
