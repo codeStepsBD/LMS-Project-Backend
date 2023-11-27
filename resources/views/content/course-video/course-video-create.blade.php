@@ -77,10 +77,12 @@
           </div>
 
           <div class="row mb-3">
-            <label class="col-sm-2 form-label" for="basic-icon-default-phone">Video URL</label>
+            <label class="col-sm-2 form-label" for="basic-icon-default-phone">Video Discription</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
-                <input type="url" id="video_url" name="video_url" class="form-control" placeholder="Video URL">
+              <div id="editor">
+                <p>This is the editor content.</p>
+              </div>
               </div>
               <div class="form-text error">
                 @error('video_url')

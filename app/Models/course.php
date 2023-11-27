@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class course extends Model
+class Course extends Model
 {
     use HasFactory;
 
@@ -16,6 +17,12 @@ class course extends Model
         'category',
         'total_lesson',
         'duration',
+        'course_thumbnail',
         'status',
       ];
+
+
+      public function author(){
+        return $this->belongsTo(User::class,'author_id', 'id');
+      }
 }

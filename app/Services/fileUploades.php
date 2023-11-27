@@ -4,7 +4,7 @@
 namespace App\Services;
 use Illuminate\Http\Request;
 
-class fileUploades
+class FileUploades
 {
     public static function fileUpload(Request $request,$file_name){
         if ($request->hasFile($file_name)) {

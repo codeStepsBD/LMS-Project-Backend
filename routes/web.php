@@ -26,9 +26,13 @@ Route::get('/layouts/container', $controller_path . '\layouts\Container@index')-
 Route::get('/layouts/blank', $controller_path . '\layouts\Blank@index')->name('layouts-blank');
 
 // Course Page
-Route::get('/pages/courses', $controller_path . '\course\Courses@index')->name('pages-course-list');
-Route::get('/pages/create-course', $controller_path . '\course\Courses@create')->name('pages-create-course');
+Route::get('/courses', $controller_path . '\course\Courses@index')->name('pages-course-list');
+Route::get('/create-course', $controller_path . '\course\Courses@create')->name('pages-create-course');
 Route::post('/pages/course-store', $controller_path . '\course\Courses@store')->name('course-store');
+Route::get('course-details/{id}', $controller_path . '\course\Courses@show')->name('course-details');
+Route::get('course-edit/{id}', $controller_path . '\course\Courses@edit')->name('course-edit');
+Route::post('course-update/{id}', $controller_path . '\course\Courses@update')->name('course-update');
+Route::get('course-delete/{id}', $controller_path . '\course\Courses@destroy')->name('course-delete');
 
 // Course Video Page
 Route::get('/pages/courses-video-list', $controller_path . '\course_video\CourseVideoController@index')->name('course-video-list');

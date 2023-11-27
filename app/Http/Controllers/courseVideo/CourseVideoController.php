@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\course_video;
+namespace App\Http\Controllers\courseVideo;
 
 use App\Models\course;
 use Illuminate\Http\Request;
@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\course\Courses;
 use App\Models\CourseVideo;
 use App\Services;
-use App\Services\fileUploades;
+use App\Services\FileUploades;
 
 class CourseVideoController extends Controller
 {
@@ -24,7 +24,7 @@ class CourseVideoController extends Controller
         return view('content.course-video.course-video-create',compact('courses'));
     }
 
-    public function store(Request $request, fileUploades $fileUploades){
+    public function store(Request $request, FileUploades $fileUploades){
 
         $validated = $request->validate([
             'course_id' => 'required',

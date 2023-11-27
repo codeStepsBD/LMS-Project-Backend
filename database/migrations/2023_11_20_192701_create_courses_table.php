@@ -19,10 +19,11 @@ return new class extends Migration
             $table->unsignedBigInteger('author_id');
             $table->foreign('author_id')->references('id')->on('users');
             $table->string('title');
-            $table->text('description');
-            $table->string('category');
-            $table->integer('total_lesson');
-            $table->float('duration');
+            $table->longText('description');
+            $table->integer('category')->nullable();
+            $table->integer('total_lesson')->nullable();
+            $table->time('duration')->nullable();
+            $table->string('course_thumbnail')->nullable();
             $table->tinyInteger('status')->default(1);;
             $table->timestamps();
         });
