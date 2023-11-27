@@ -13,6 +13,9 @@
 
 <!-- Basic Bootstrap Table -->
 <div class="card">
+  @if(Session::has('success'))
+  <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('success') }}</p>
+  @endif
   <div class="table-responsive text-nowrap">
     <table class="table">
       <thead>
@@ -31,7 +34,7 @@
         @foreach($data as $value)
         <tr>
           <td>{{ $value->title }}</td>
-          <td>{{ $value->author_id }}</td>
+          <td>{{ $value->author->name }}</td>
           <td>{{ $value->category }}</td>
           <td>{{ $value->total_lesson }}</td>
           <td>{{ $value->duration }}</td>
@@ -44,11 +47,9 @@
           </td>
           <td>
             <div class="dropdown">
-              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-              </div>
+              <a href="{{ route('course-edit',$value->id) }}"><i class="bx bxs-edit"></i></a>
+              <a href="{{ route('course-details',$value->id) }}"><i class="bx bxs-low-vision"></i></a>
+              <a onclick="return confirm('Are you sure want to delete');" href="{{ route('course-delete',$value->id) }}"><i class="bx bxs-message-square-x"></i></a>
             </div>
           </td>
         </tr>

@@ -14,13 +14,13 @@
 <div class="col-xxl">
     <div class="card mb-4">
       <div class="card-body">
-        <form method="POST" action="{{ route('course-store') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('course-update', $course->id) }}" enctype="multipart/form-data">
           @csrf()
           <div class="row mb-3">
             <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Course Title</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
-                <input type="text" class="form-control" id="title" name="title" placeholder="Course Title" aria-label="Course Title">
+                <input type="text" class="form-control" id="title" name="title" placeholder="Course Title" value="{{ $course->title }}">
               </div>
               <div class="form-text error">
                 @error('title')
@@ -36,7 +36,7 @@
                 <select name="author_id" class="form-control" id="author">
                   <option value="">Select Author</option>
                   @foreach($users as $user)
-                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                    <option {{ ($course->author_id == $user->id)? 'selected':"" }} value="{{ $user->id }}">{{ $user->name }}</option>
                   @endforeach
                 </select>
               </div>
@@ -53,7 +53,7 @@
               <div class="input-group input-group-merge">
                 <select name="category" class="form-control" id="category">
                   <option value="">Select Category</option>
-                  <option value="1">Laravel Developer</option>
+                  <option {{ ($course->category == '1')? 'selected':"" }} value="1">Laravel Developer</option>
                 </select>
               </div>
               <div class="form-text error">
@@ -67,11 +67,27 @@
             <label class="col-sm-2 form-label" for="basic-icon-default-message">Course Description</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
-                <textarea id="editor" name="description" class="form-control"></textarea>
+                <textarea id="editor" name="description" class="form-control">{{ $course->description }}</textarea>
               </div>
               <div class="form-text error">
                 @error('description')
                   {{ $errors->first('description') }}
+                @enderror
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Status</label>
+            <div class="col-sm-10">
+              <div class="input-group input-group-merge">
+                <select name="status" class="form-control" id="status">
+                  <option {{ ($course->status == '1')? 'selected':"" }} value="1">Published</option>
+                  <option {{ ($course->status == '2')? 'selected':"" }} value="2">Draft</option>
+                </select>
+              </div>
+              <div class="form-text error">
+                @error('status')
+                  {{ $errors->first('status') }}
                 @enderror
               </div>
             </div>
@@ -85,22 +101,6 @@
               <div class="form-text error">
                 @error('course_thumbnail')
                   {{ $errors->first('course_thumbnail') }}
-                @enderror
-              </div>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Status</label>
-            <div class="col-sm-10">
-              <div class="input-group input-group-merge">
-                <select name="status" class="form-control" id="category">
-                  <option value="1">Published</option>
-                  <option value="2">Draft</option>
-                </select>
-              </div>
-              <div class="form-text error">
-                @error('category')
-                  {{ $errors->first('category') }}
                 @enderror
               </div>
             </div>

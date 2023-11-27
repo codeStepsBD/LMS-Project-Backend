@@ -27,16 +27,18 @@
   <!-- Layout Content -->
   @yield('layoutContent')
   <!--/ Layout Content -->
-
-  {{-- remove while creating package --}}
-  <div class="buy-now">
-    <a href="{{config('variables.productPage')}}" target="_blank" class="btn btn-danger btn-buy-now">Upgrade To Pro</a>
-  </div>
-  {{-- remove while creating package end --}}
-
+  
   <!-- Include Scripts -->
   @include('layouts/sections/scripts')
-
+  <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+  <script>
+      CKEDITOR.replace( 'editor' );
+  </script>
+  <style>
+    #cke_editor{
+      width: 100%;
+    }
+  </style>
 </body>
 
 </html>

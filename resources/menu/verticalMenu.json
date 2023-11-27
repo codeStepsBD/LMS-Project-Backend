@@ -11,17 +11,17 @@
       "menuHeader": "Courses"
     },
     {
-      "name": "Course Activity",
+      "name": "Course",
       "icon": "menu-icon tf-icons bx bx bx-dock-top",
       "slug": "pages-account-settings",
       "submenu": [
         {
-          "url": "/pages/create-course",
+          "url": "create-course",
           "name": "Create Course",
           "slug": "pages-create-course"
         },
         {
-          "url": "/pages/courses",
+          "url": "courses",
           "name": "Course List",
           "slug": "pages-course-list"
         }
