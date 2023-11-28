@@ -2,25 +2,23 @@
 
 namespace App\Http\Controllers\courseVideo;
 
-use App\Models\course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\course\Courses;
+use App\Models\Course;
 use App\Models\CourseVideo;
-use App\Services;
 use App\Services\FileUploades;
 
 class CourseVideoController extends Controller
 {
     public function index()
     {
-        $data = CourseVideo::get();
+        $data = CourseVideo::with('course')->get();
         return view('content.course-video.course-video-list',compact('data'));
     }
 
 
     public function create(){
-        $courses = CourseVideo::get();
+        $courses = Course::get();
         return view('content.course-video.course-video-create',compact('courses'));
     }
 
@@ -32,7 +30,7 @@ class CourseVideoController extends Controller
             'video_thumbnail' => 'nullable',
             'video_url' => 'required',
             'video_epsode_number' => 'required|numeric',
-            'video_duration' => 'required|numeric',
+            'video_duration' => 'required',
             'description' => 'required',
             'public_private_status' => 'required',
         ]);
@@ -44,13 +42,13 @@ class CourseVideoController extends Controller
     }
 
     public function show($id){
-        $courses = CourseVideo::get();
+        $courses = Course::get();
         $course_video = CourseVideo::find($id);
         return view('content.course-video.show-course-video',compact(['courses','course_video']));
     }
 
     public function edit($id){
-        $courses = CourseVideo::get();
+        $courses = Course::get();
         $course_video = CourseVideo::find($id);
         return view('content.course-video.edit-course-video',compact(['courses','course_video']));
     }
@@ -63,9 +61,10 @@ class CourseVideoController extends Controller
             'video_thumbnail' => 'nullable',
             'video_url' => 'required',
             'video_epsode_number' => 'required|numeric',
-            'video_duration' => 'required|numeric',
+            'video_duration' => 'required',
             'description' => 'required',
             'public_private_status' => 'required',
+            'status' => 'required',
         ]);
         CourseVideo::where("id", $id)->update($validated);
         return redirect()->route('course-video-list')

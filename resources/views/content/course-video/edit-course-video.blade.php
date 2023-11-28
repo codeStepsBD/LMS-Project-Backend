@@ -8,7 +8,7 @@
 
 @section('content')
 <h4 class="fw-bold py-3 mb-4">
-  <span class="text-muted fw-light">Create New Course</span>
+  <span class="text-muted fw-light">Edit</span>
 </h4>
 <!-- Basic Bootstrap Table -->
 <div class="col-xxl">
@@ -23,7 +23,7 @@
                 <select name="course_id" class="form-control" id="course_id">
                   <option value="">Select Course</option>
                   @foreach($courses as $value)
-                      <option {{ ($course_video->id == $value->id) ? "selected" : "" }} value="{{$value->id}}">{{$value->title}}</option>
+                      <option {{ ($course_video->course_id == $value->id) ? "selected" : "" }} value="{{$value->id}}">{{$value->title}}</option>
                   @endforeach
                 </select>
               </div>
@@ -78,7 +78,7 @@
             <label class="col-sm-2 form-label" for="basic-icon-default-message">Video Duration</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
-                <input type="number" id="video_duration" name="video_duration" class="form-control" placeholder="Video duration" value="{{ $course_video->video_duration }}">
+                <input type="time" id="video_duration" name="video_duration" class="form-control" placeholder="Video duration" value="{{ $course_video->video_duration }}">
               </div>
               <div class="form-text error">
                 @error('video_duration')
@@ -87,11 +87,12 @@
               </div>
             </div>
           </div>
+
           <div class="row mb-3">
-            <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Video Description</label>
+            <label class="col-sm-2 form-label" for="basic-icon-default-phone">Video Discription</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
-                <textarea id="description" name="description" class="form-control" placeholder="Description">{{ $course_video->description }}</textarea>
+                <textarea id="editor" name="description" id="" cols="30" rows="10">{{ $course_video->description }}</textarea>
               </div>
               <div class="form-text error">
                 @error('description')
@@ -117,7 +118,23 @@
                 </div>
             </div>
           </div>
-
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Status</label>
+            <div class="col-sm-10">
+              <div class="input-group input-group-merge">
+                <select name="status" class="form-control" id="status">
+                  <option value="">Select Status</option>
+                  <option value="1" {{ ($course_video->status == 1) ? "selected" : "" }} >Publish</option>
+                  <option value="2" {{ ($course_video->status == 2) ? "selected" : "" }}>Draft</option>
+                </select>
+              </div>
+                <div class="form-text error">
+                  @error('status')
+                    {{ $errors->first('status') }}
+                  @enderror
+                </div>
+            </div>
+          </div>
           <div class="row justify-content-end">
             <div class="col-sm-10">
               <button type="submit" class="btn btn-primary">Send</button>

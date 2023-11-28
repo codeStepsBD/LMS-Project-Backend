@@ -77,26 +77,10 @@
           </div>
 
           <div class="row mb-3">
-            <label class="col-sm-2 form-label" for="basic-icon-default-phone">Video Discription</label>
-            <div class="col-sm-10">
-              <div class="input-group input-group-merge">
-              <div id="editor">
-                <p>This is the editor content.</p>
-              </div>
-              </div>
-              <div class="form-text error">
-                @error('video_url')
-                  {{ $errors->first('video_url') }}
-                @enderror
-              </div>
-            </div>
-          </div>
-
-          <div class="row mb-3">
             <label class="col-sm-2 form-label" for="basic-icon-default-message">Video Duration</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
-                <input type="number" id="video_duration" name="video_duration" class="form-control" placeholder="Video duration">
+                <input type="time" id="video_duration" name="video_duration" class="form-control" placeholder="Video duration">
               </div>
               <div class="form-text error">
                 @error('video_duration')
@@ -106,6 +90,19 @@
             </div>
           </div>
 
+          <div class="row mb-3">
+            <label class="col-sm-2 form-label" for="basic-icon-default-phone">Video Discription</label>
+            <div class="col-sm-10">
+              <div class="input-group input-group-merge">
+                <textarea id="editor" name="description" id="" cols="30" rows="10"></textarea>
+              </div>
+              <div class="form-text error">
+                @error('description')
+                  {{ $errors->first('description') }}
+                @enderror
+              </div>
+            </div>
+          </div>
           <div class="row mb-3">
             <label class="col-sm-2 form-label" for="basic-icon-default-message">Video Thumbnail</label>
             <div class="col-sm-10">
@@ -119,13 +116,12 @@
               </div>
             </div>
           </div>
-
           <div class="row mb-3">
-            <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Video Status</label>
+            <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Public Or Private</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
                 <select name="public_private_status" class="form-control" id="public_private_status">
-                  <option value="">Select status</option>
+                  <option value="">Public Or Private</option>
                   <option value="1">Public</option>
                   <option value="2">Private</option>
                 </select>
@@ -137,7 +133,23 @@
                 </div>
             </div>
           </div>
-
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Status</label>
+            <div class="col-sm-10">
+              <div class="input-group input-group-merge">
+                <select name="status" class="form-control" id="status">
+                  <option value="">Select Status</option>
+                  <option value="1">Publish</option>
+                  <option value="2">Draft</option>
+                </select>
+              </div>
+                <div class="form-text error">
+                  @error('status')
+                    {{ $errors->first('status') }}
+                  @enderror
+                </div>
+            </div>
+          </div>
           <div class="row justify-content-end">
             <div class="col-sm-10">
               <button type="submit" class="btn btn-primary">Send</button>
@@ -151,3 +163,4 @@
 
 </div>
 @endsection
+  

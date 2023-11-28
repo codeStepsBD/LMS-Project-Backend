@@ -24,6 +24,7 @@ return new class extends Migration
             $table->integer('total_lesson')->nullable();
             $table->time('duration')->nullable();
             $table->string('course_thumbnail')->nullable();
+            $table->dateTime('publish_at')->nullable();
             $table->tinyInteger('status')->default(1);;
             $table->timestamps();
         });
