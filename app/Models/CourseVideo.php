@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Course;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class CourseVideo extends Model
 {
@@ -20,4 +21,8 @@ class CourseVideo extends Model
         'public_private_status',
         'status',
       ];
+
+      public function course(){
+        return $this->belongsTo(Course::class, 'course_id','id');
+      }
 }

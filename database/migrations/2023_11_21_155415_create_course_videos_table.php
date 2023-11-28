@@ -21,8 +21,9 @@ return new class extends Migration
             $table->string('video_thumbnail')->nullable();
             $table->string('video_url')->nullable();
             $table->string('video_epsode_number')->nullable();
-            $table->string('video_duration')->nullable();
-            $table->text('description')->nullable();
+            $table->time('video_duration')->nullable();
+            $table->longText('description')->nullable();
+            $table->dateTime('publish_at')->nullable();
             $table->tinyInteger('public_private_status');
             $table->tinyInteger('status')->default(1);
             $table->softDeletes();

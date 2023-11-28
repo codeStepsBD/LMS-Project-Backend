@@ -32,15 +32,15 @@
         @if(isset($data))
         @foreach($data as $value)
         <tr>
-          <td>{{ $value->id }}</td>
+          <td title="{{ $value->course->title }}">{{ $value->course->title }}</td>
           <td>{{ $value->title }}</td>
           <td>{{ $value->video_epsode_number }}</td>
           <td>{{ $value->video_duration }}</td>
           <td>
             @if($value->status == 1)
-              <span class="badge bg-label-primary me-1">Active</span>
+              <span class="badge bg-label-primary me-1">Publish</span>
             @else
-            <span class="badge bg-label-primary me-1">Inactive</span>
+            <span class="badge bg-label-warning me-1">Draft</span>
             @endif
           </td>
           <td>

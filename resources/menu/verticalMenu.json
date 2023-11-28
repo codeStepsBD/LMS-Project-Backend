@@ -35,12 +35,12 @@
       "slug": "course video",
       "submenu": [
         {
-          "url": "/pages/courses-video-list",
+          "url": "courses-video-list",
           "name": "Course Video",
           "slug": "courses-video-list"
         },
         {
-          "url": "/pages/create-course-video",
+          "url": "create-course-video",
           "name": "Create course video",
           "slug": "create-course-video"
         }

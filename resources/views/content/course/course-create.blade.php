@@ -93,14 +93,14 @@
             <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Status</label>
             <div class="col-sm-10">
               <div class="input-group input-group-merge">
-                <select name="status" class="form-control" id="category">
+                <select name="status" class="form-control" id="status">
                   <option value="1">Published</option>
                   <option value="2">Draft</option>
                 </select>
               </div>
               <div class="form-text error">
-                @error('category')
-                  {{ $errors->first('category') }}
+                @error('status')
+                  {{ $errors->first('status') }}
                 @enderror
               </div>
             </div>
